@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+    <title>Voucher generator</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        @media print {
+            .hide-print {
+                display: none;
+            }
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        #app {
+            flex: 1 0 auto;
+        }
+
+        .btn-larger {
+            height: 82px;
+            line-height: 82px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <div class="container">
+        <h3 class="black-text">Steinbart - WiFi Voucher</h3>
+        <p class="black-text flow-text">Dieser Code berechtigt eine Klasse (35 Geräte) zur Internetnutzung für eine Unterrichtsstunde (67 Minuten).</p>
+        <p class="black-text flow-text">Dieser Voucher wurde soeben frisch für Sie generiert!</p>
+        <div class="container grey" style="padding: 1vh;">
+            <h1 class="white-text center">
+                %code%
+            </h1>
+        </div>
+        <h4>Anleitung zur Nutzung vom WLAN am Steinbart-Gymnasium</h4>
+        <ol class="flow-text">
+            <li>Verbinden Sie sich mit dem WLAN-Netzwerk "Steinbart-Gymnasium Voucher"</li>
+            <li>Warten Sie, bis das Gerät Sie zur Eingabe eines Vouchers auffordert</li>
+            <li>Geben Sie den obigen Voucher ein und klicken Sie auf "Connect"</li>
+        </ol>
+        <h4>Räume, in denen das WiFi nutzbar ist</h4>
+        <p class="flow-text">Aufgrund mangelnder Finanzierung ist das WiFi Netzwerk aktuell nur in manchen Teilen des Steinbart-Gymnasiums verfügbar:</p>
+        <ul>
+            <li>Altbau (insb. NW, Abdeckung in den mittleren Räumen im 3. OG eingeschränkt!)</li>
+            <li>Stahlbau (insb. in den äußeren Räumen)</li>
+        </ul>
+        <p class="flow-text">Wir arbeiten weiterhin an Finanzierungsmöglichkeiten für das Netzwerk. Falls Sie uns dabei unterstützen wollen, erreichen Sie mich unter <a href="mailto:daniel.malik@steinbart.xyz">daniel.malik@steinbart.xyz</a>.
+        </p>
+        <hr>
+        <p class="flow-text">Bei Fragen oder Problemen erreichen Sie das Netzwerk-Team unter <a href="mailto:support@steinbart.xyz">support@steinbart.xyz</a>. Bitte melden Sie uns sofort, falls Probleme auftreten.</p>
+    </div>
+</div>

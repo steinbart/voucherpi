@@ -4,6 +4,7 @@ from unifi import Unifi
 import settings
 import pdfkit
 from gpiozero import Button
+import os
 
 
 def print_voucher():
@@ -18,6 +19,7 @@ def print_voucher():
         pdfkit.from_string(s, f"data/{voucher['code']}.pdf", {'page-size': 'A4', 'margin-top': '5cm', 'margin-left': '4cm', 'margin-right': '4cm', 'margin-bottom': '5cm'})
         # Attempt to print PDF
         c.printFile(settings.CUPS_PRINTER, f"data/{voucher['code']}.pdf", voucher['code'], {})
+        os.remove(f"data/{voucher['code']}.pdf")
 
 
 if __name__ == '__main__':

@@ -25,6 +25,9 @@ def print_voucher():
 
 
 if __name__ == '__main__':
+    # Check if data dir exists/create
+    os.rmdir("data")
+    os.mkdir("data")
     global api
     api = Unifi(settings.UNIFI_USERNAME, settings.UNIFI_PASSWORD, settings.UNIFI_URL, site=settings.UNIFI_SITE)
     print("+ Initialized Unifi API")

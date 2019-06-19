@@ -6,3 +6,4 @@ EXPIRE = 67  # in minutes
 USAGES = 35
 CUPS_SERVER = 'localhost'
 CUPS_PRINTER = 'HP'
+BUTTON_PIN = 3  # Button pin

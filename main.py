@@ -29,5 +29,7 @@ if __name__ == '__main__':
     global c
     c = cups.Connection()
 
-    b = Button(1)
+    b = Button(settings.BUTTON_PIN)
     b.when_released = print_voucher
+    while True:
+        pass

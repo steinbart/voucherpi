@@ -16,7 +16,7 @@ def print_voucher():
         filename = "data/" + code + ".pdf"
         s = f.read().replace("%code%", code)
         # Insert voucher into document
-        print(f"+ Printing voucher " + code)
+        print("+ Printing voucher " + code)
         # Convert to PDF
         pdfkit.from_string(s, filename, {'page-size': 'A4', 'margin-top': '5cm', 'margin-left': '4cm', 'margin-right': '4cm', 'margin-bottom': '5cm'})
         # Attempt to print PDF

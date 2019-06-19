@@ -18,7 +18,7 @@ def print_voucher():
         # Insert voucher into document
         print("+ Printing voucher " + code)
         # Convert to PDF
-        pdfkit.from_string(s, filename, {'page-size': 'A4', 'margin-top': '5cm', 'margin-left': '4cm', 'margin-right': '4cm', 'margin-bottom': '5cm'})
+        pdfkit.from_string(s, filename, {'page-size': 'A4', 'margin-top': '4cm', 'margin-left': '2.5cm', 'margin-right': '2.5cm', 'margin-bottom': '2cm'})
         # Attempt to print PDF
         c.printFile(settings.CUPS_PRINTER, filename, code, {})
         os.remove(filename)

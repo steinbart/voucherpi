@@ -37,6 +37,7 @@ if __name__ == '__main__':
     print("+ Initialized CUPS")
 
     b = Button(settings.BUTTON_PIN)
+    print("+ Listening for input on pin " + settings.BUTTON_PIN)
     b.when_released = print_voucher
     while True:
         pass

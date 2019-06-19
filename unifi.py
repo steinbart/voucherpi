@@ -40,9 +40,9 @@ class Unifi:
         Authenticate against the Unifi API
         :return: authentication successful
         """
-        self.session.headers.update({'referrer': f"{self.base_url}/login"})
+        self.session.headers.update({'referrer': "%s/login" % self.base_url})
         # Send credentials to API, check if successful
-        if self.session.post(f"{self.base_url}/api/login", json={'username': self.username, 'password': self.password}).json().get('meta').get('rc') == 'ok':
+        if self.session.post("%s/api/login" % self.base_url, json={'username': self.username, 'password': self.password}).json().get('meta').get('rc') == 'ok':
             return True
         else:
             raise UnifiAuthenticationException
@@ -56,7 +56,7 @@ class Unifi:
         :param n: Amount of vouchers
         :return: API response in JSON
         """
-        token = self.session.post(f"{self.base_url}/api/s/{self.site}/cmd/hotspot",
+        token = self.session.post("%s/api/s/%s/cmd/hotspot" % (self.base_url, self.site),
                                   json={'cmd': 'create-voucher', 'expire': 'custom', 'expire_number': expire, 'expire_unit': 1, 'n': 1, 'note': note, 'quota': usages}, verify=False).json()
         if token.get('meta').get('rc') == 'ok':
             # Successful, get token stats
@@ -73,7 +73,7 @@ class Unifi:
         :param create_time: Create time of the token
         :return: API response as JSON
         """
-        stats = self.session.get(f"{self.base_url}/api/s/{self.site}/stat/voucher", verify=False).json()
+        stats = self.session.get("%s/api/s/%s/stat/voucher" % (self.base_url, self.site), verify=False).json()
         vouchers = []
         if stats.get('meta').get('rc') == 'ok':
             for voucher in stats.get('data'):
@@ -86,4 +86,4 @@ class Unifi:
         Retrieve all vouchers
         :return: API response as JSON
         """
-        return self.session.get(f"{self.base_url}/api/s/{self.site}/stat/voucher", verify=False).json()
+        return self.session.get("%s/api/s/%s/stat/voucher" % (self.base_url, self.site), verify=False).json()

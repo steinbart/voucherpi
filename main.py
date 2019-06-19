@@ -27,9 +27,11 @@ def print_voucher():
 if __name__ == '__main__':
     global api
     api = Unifi(settings.UNIFI_USERNAME, settings.UNIFI_PASSWORD, settings.UNIFI_URL, site=settings.UNIFI_SITE)
+    print("+ Initialized Unifi API")
     cups.setServer(settings.CUPS_SERVER)
     global c
     c = cups.Connection()
+    print("+ Initialized CUPS")
 
     b = Button(settings.BUTTON_PIN)
     b.when_released = print_voucher

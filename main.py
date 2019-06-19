@@ -12,14 +12,16 @@ def print_voucher():
     f = open('templates/voucher.html', 'r')
     vouchers = api.generate_voucher(expire=settings.EXPIRE, usages=settings.USAGES)
     for voucher in vouchers:
-        s = f.read().replace("%code%", voucher['code'])
+        code = voucher['code']
+        filename = "data/" + code + ".pdf"
+        s = f.read().replace("%code%", code)
         # Insert voucher into document
-        print(f"+ Printing voucher {voucher['code']}")
+        print(f"+ Printing voucher " + code)
         # Convert to PDF
-        pdfkit.from_string(s, f"data/{voucher['code']}.pdf", {'page-size': 'A4', 'margin-top': '5cm', 'margin-left': '4cm', 'margin-right': '4cm', 'margin-bottom': '5cm'})
+        pdfkit.from_string(s, filename, {'page-size': 'A4', 'margin-top': '5cm', 'margin-left': '4cm', 'margin-right': '4cm', 'margin-bottom': '5cm'})
         # Attempt to print PDF
-        c.printFile(settings.CUPS_PRINTER, f"data/{voucher['code']}.pdf", voucher['code'], {})
-        os.remove(f"data/{voucher['code']}.pdf")
+        c.printFile(settings.CUPS_PRINTER, filename, code, {})
+        os.remove(filename)
 
 
 if __name__ == '__main__':

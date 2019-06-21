@@ -56,8 +56,10 @@ class Unifi:
         :param n: Amount of vouchers
         :return: API response in JSON
         """
-        token = self.session.post("%s/api/s/%s/cmd/hotspot" % (self.base_url, self.site),
-                                  json={'cmd': 'create-voucher', 'expire': 'custom', 'expire_number': expire, 'expire_unit': 1, 'n': 1, 'note': note, 'quota': usages}, verify=False).json()
+        params = {'cmd': 'create-voucher', 'expire': 'custom', 'expire_number': expire, 'expire_unit': 1, 'n': 1, 'note': note, 'quota': usages}
+
+        token = self.session.post("%s/api/s/%s/cmd/hotspot" % (self.base_url, self.site), json=params, verify=False).json()
+
         if token.get('meta').get('rc') == 'ok':
             # Successful, get token stats
             vouchers = []

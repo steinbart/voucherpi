@@ -6,6 +6,11 @@ VoucherPI is a simple, hacky script that prints out a freshly generated voucher 
 
 The implementation is hacky and needs to be worked on. Error handling is non-existant. It can and will crash.
 
+## API (Unifi)
+
+You may use the Unifi API provided in this project for your own projects.
+The documentation can be found in the file.
+
 ## Configuration
 
 See `settings.py`.
@@ -23,3 +28,4 @@ Adjust neccesary parameters and copy to `/etc/systemd/user/voucherpi.service`. Y
 ## Maintainers
 
 - Daniel Malik <daniel.malik@steinbart.xyz>
+

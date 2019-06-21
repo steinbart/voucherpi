@@ -6,6 +6,7 @@ class UnifiAuthenticationException(Exception):
 
 
 class Unifi:
+    """Unifi voucher API wrapper"""
 
     def __init__(self, username, password, base_url, site='default', ignore_ssl=True, authenticate=True):
         """
@@ -69,6 +70,7 @@ class Unifi:
             return vouchers
         return None
 
+    # Retrieve stats about a specific token
     def token_stats(self, create_time):
         """
         Retrieve token statistics
@@ -83,6 +85,7 @@ class Unifi:
                     vouchers.append(voucher)
         return vouchers if vouchers else False
 
+    # List available vouchers
     def list_vouchers(self):
         """
         Retrieve all vouchers

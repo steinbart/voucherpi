@@ -1,6 +1,6 @@
 import cups
 
-from unifi import Unifi
+from unifipy import Unifi
 import settings
 import pdfkit
 from gpiozero import Button

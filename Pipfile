@@ -11,6 +11,7 @@ pdfkit = "*"
 pycups = "*"
 gpiozero = "*"
 unifipy = "*"
+cups = "*"
 
 [requires]
 python_version = "3.7"

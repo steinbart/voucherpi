@@ -15,3 +15,5 @@ CUPS_SERVER = 'localhost'
 CUPS_PRINTER = 'HP'
 # Raspberry PI button GPIO pin (GPIO, not PIN! Check pinout!)
 BUTTON_PIN = 3
+# Button debounce time
+BUTTON_DEBOUNCE_TIME = 2

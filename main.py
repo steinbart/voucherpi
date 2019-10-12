@@ -13,21 +13,22 @@ import settings
 
 def print_voucher():
     # Read file
-    f = open('templates/voucher.html', 'r')
-    vouchers = api.generate_voucher(expire=settings.EXPIRE, usages=settings.USAGES)
-    for voucher in vouchers:
-        code = voucher['code']
-        filename = NamedTemporaryFile("data/" + code + ".pdf")
-        s = f.read().replace("%code%", code)
-        # Insert voucher into document
-        print("+ Printing voucher " + code)
-        # Convert to PDF
-        pdfkit.from_string(s, filename,
-                           {'page-size': 'A4', 'margin-top': '4cm', 'margin-left': '2.5cm', 'margin-right': '2.5cm',
-                            'margin-bottom': '2cm'})
-        # Attempt to print PDF
-        c.printFile(settings.CUPS_PRINTER, filename, code, {})
-        os.remove(filename)
+    print("+ Attempting to print voucher")
+    with open('templates/voucher.html', 'r') as f:
+        vouchers = api.generate_voucher(expire=settings.EXPIRE, usages=settings.USAGES)
+        for voucher in vouchers:
+            code = voucher['code']
+            with NamedTemporaryFile() as x:
+                # Insert voucher into document
+                s = f.read().replace("%code%", code)
+                print("+ Printing voucher " + code)
+                # Convert to PDF
+                pdfkit.from_string(s, x.name,
+                                   {'page-size': 'A4', 'margin-top': '4cm', 'margin-left': '2.5cm',
+                                    'margin-right': '2.5cm',
+                                    'margin-bottom': '2cm'})
+                # Attempt to print PDF
+                c.printFile(settings.CUPS_PRINTER, x.name, code, {})
 
 
 if __name__ == '__main__':

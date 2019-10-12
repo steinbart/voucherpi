@@ -32,21 +32,13 @@ def print_voucher():
 
 
 if __name__ == '__main__':
-    parser = ArgumentParser(description="VoucherPI CLI")
-    parser.add_argument("--local", default=False, help="Enable local mode (don't use GPIO, trigger instantly)",
-                        action="store_true")
-    args = parser.parse_args()
     api = Unifi(settings.UNIFI_USERNAME, settings.UNIFI_PASSWORD, settings.UNIFI_URL, site=settings.UNIFI_SITE)
     print("+ Initialized Unifi API")
     cups.setServer(settings.CUPS_SERVER)
     c = cups.Connection()
     print("+ Initialized CUPS")
-    if args.local:
-        print("+ Using local mode, triggering input")
-        print_voucher()
-    else:
-        print("+ Listening for input on pin " + str(settings.BUTTON_PIN))
-        b = Button(settings.BUTTON_PIN, bounce_time=settings.BUTTON_DEBOUNCE_TIME)
-        b.when_released = print_voucher
-        while True:
-            pass
+    print("+ Listening for input on pin " + str(settings.BUTTON_PIN))
+    b = Button(settings.BUTTON_PIN, bounce_time=settings.BUTTON_DEBOUNCE_TIME)
+    b.when_released = print_voucher
+    while True:
+        pass

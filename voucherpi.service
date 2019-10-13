@@ -9,6 +9,7 @@ WorkingDirectory=/home/pi/voucherpi
 ExecStart=/usr/bin/python3 /home/pi/voucherpi/main.py
 Restart=always
 RestartSec=5
+User=pi
 
 [Install]
 WantedBy=default.target

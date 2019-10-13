@@ -12,8 +12,8 @@ USAGES = 35
 # Cups settings
 CUPS_SERVER = 'localhost'
 # Specify printer (friendly name is okay)
-CUPS_PRINTER = 'HP'
+CUPS_PRINTER = 'PDF'
 # Raspberry PI button GPIO pin (GPIO, not PIN! Check pinout!)
 BUTTON_PIN = 3
 # Button debounce time
-BUTTON_DEBOUNCE_TIME = 2
+BUTTON_DEBOUNCE_TIME = 0.1

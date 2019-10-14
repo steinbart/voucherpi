@@ -1,3 +1,4 @@
+import sys
 import time
 from argparse import ArgumentParser
 import os
@@ -38,8 +39,13 @@ def print_voucher():
 
 if __name__ == '__main__':
     led = LED(settings.LED_PIN)
+    try:
+        api = Unifi(settings.UNIFI_USERNAME, settings.UNIFI_PASSWORD, settings.UNIFI_URL, site=settings.UNIFI_SITE)
+    except Exception:
+        print("+ Could not connect to Unifi API")
+        led.off()
+        sys.exit(1)
     led.on()
-    api = Unifi(settings.UNIFI_USERNAME, settings.UNIFI_PASSWORD, settings.UNIFI_URL, site=settings.UNIFI_SITE)
     print("+ Initialized Unifi API")
     cups.setServer(settings.CUPS_SERVER)
     c = cups.Connection()

@@ -31,7 +31,7 @@ def print_voucher():
                                     'margin-bottom': '2cm'})
                 # Attempt to print PDF
                 c.printFile(settings.CUPS_PRINTER, x.name, code, {})
-                time.sleep(500)
+                time.sleep(1)
                 led.off()
                 led.on()
 

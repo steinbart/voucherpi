@@ -30,10 +30,9 @@ def print_voucher():
                 s = f.read().replace("%code%", code)
                 print("+ Printing voucher " + code)
                 # Convert to PDF
-                pdfkit.from_string(s, x.name,
-                                   {'page-size': 'A4', 'margin-top': '2cm'})
-                # Attempt to print PDF
-                c.printFile(settings.CUPS_PRINTER, x.name, code, {})
+                pdfkit.from_string(s, x.name, {'page-size': 'A4', 'margin-top': '2cm'})
+                # Attempt to print PDF on default printer
+                c.printFile(c.getDefault(), x.name, code, {})
                 time.sleep(1)
                 led.off()
                 led.on()

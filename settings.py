@@ -9,10 +9,8 @@ UNIFI_URL = 'https://localhost:8443'
 # Unifi voucher parameters
 EXPIRE = 67  # in minutes
 USAGES = 35
-# Cups settings
+# Cups server (uses default printer)
 CUPS_SERVER = 'localhost'
-# Specify printer (friendly name is okay)
-CUPS_PRINTER = 'PDF'
 # Raspberry PI button GPIO pin (GPIO, not PIN! Check pinout!)
 BUTTON_PIN = 3
 # Button debounce time

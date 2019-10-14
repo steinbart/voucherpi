@@ -17,3 +17,5 @@ CUPS_PRINTER = 'PDF'
 BUTTON_PIN = 3
 # Button debounce time
 BUTTON_DEBOUNCE_TIME = 0.1
+# LED pin
+LED_PIN = 4

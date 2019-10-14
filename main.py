@@ -32,7 +32,7 @@ def print_voucher():
 
 
 if __name__ == '__main__':
-    LED(4).on()
+    LED(settings.LED_PIN).on()
     api = Unifi(settings.UNIFI_USERNAME, settings.UNIFI_PASSWORD, settings.UNIFI_URL, site=settings.UNIFI_SITE)
     print("+ Initialized Unifi API")
     cups.setServer(settings.CUPS_SERVER)

@@ -18,7 +18,11 @@ def print_voucher():
     led.blink(0.25, 0.25)
     print("+ Attempting to print voucher")
     with open('templates/voucher.html', 'r') as f:
-        vouchers = api.generate_voucher(expire=settings.EXPIRE, usages=settings.USAGES)
+        try:
+            vouchers = api.generate_voucher(expire=settings.EXPIRE, usages=settings.USAGES)
+        except Exception:
+            print("+ Failed to generate voucher")
+            kill()
         for voucher in vouchers:
             code = voucher['code']
             with NamedTemporaryFile() as x:
@@ -37,14 +41,19 @@ def print_voucher():
                 led.on()
 
 
+def kill():
+    led.off()
+    time.sleep(3)
+    sys.exit(1)
+
+
 if __name__ == '__main__':
     led = LED(settings.LED_PIN)
     try:
         api = Unifi(settings.UNIFI_USERNAME, settings.UNIFI_PASSWORD, settings.UNIFI_URL, site=settings.UNIFI_SITE)
     except Exception:
         print("+ Could not connect to Unifi API")
-        led.off()
-        sys.exit(1)
+        kill()
     led.on()
     print("+ Initialized Unifi API")
     cups.setServer(settings.CUPS_SERVER)

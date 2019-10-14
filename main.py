@@ -5,7 +5,7 @@ from tempfile import NamedTemporaryFile
 
 import cups
 import pdfkit
-from gpiozero import Button
+from gpiozero import Button, LED
 from unifipy import Unifi
 
 import settings
@@ -32,6 +32,7 @@ def print_voucher():
 
 
 if __name__ == '__main__':
+    LED(4).on()
     api = Unifi(settings.UNIFI_USERNAME, settings.UNIFI_PASSWORD, settings.UNIFI_URL, site=settings.UNIFI_SITE)
     print("+ Initialized Unifi API")
     cups.setServer(settings.CUPS_SERVER)

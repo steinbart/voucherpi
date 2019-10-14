@@ -1,3 +1,4 @@
+import time
 from argparse import ArgumentParser
 import os
 from argparse import ArgumentParser
@@ -13,7 +14,7 @@ import settings
 
 def print_voucher():
     # Read file
-    led.blink()
+    led.blink(0.25, 0.25)
     print("+ Attempting to print voucher")
     with open('templates/voucher.html', 'r') as f:
         vouchers = api.generate_voucher(expire=settings.EXPIRE, usages=settings.USAGES)
@@ -30,6 +31,7 @@ def print_voucher():
                                     'margin-bottom': '2cm'})
                 # Attempt to print PDF
                 c.printFile(settings.CUPS_PRINTER, x.name, code, {})
+                time.sleep(500)
                 led.off()
                 led.on()
 

@@ -31,7 +31,7 @@ def print_voucher():
                 print("+ Printing voucher " + code)
                 # Convert to PDF
                 pdfkit.from_string(s, x.name,
-                                   {'page-size': 'A4'})
+                                   {'page-size': 'A4', 'margin-top': '4cm'})
                 # Attempt to print PDF
                 c.printFile(settings.CUPS_PRINTER, x.name, code, {})
                 time.sleep(1)

@@ -13,6 +13,7 @@ import settings
 
 def print_voucher():
     # Read file
+    led.blink()
     print("+ Attempting to print voucher")
     with open('templates/voucher.html', 'r') as f:
         vouchers = api.generate_voucher(expire=settings.EXPIRE, usages=settings.USAGES)
@@ -29,10 +30,13 @@ def print_voucher():
                                     'margin-bottom': '2cm'})
                 # Attempt to print PDF
                 c.printFile(settings.CUPS_PRINTER, x.name, code, {})
+                led.off()
+                led.on()
 
 
 if __name__ == '__main__':
-    LED(settings.LED_PIN).on()
+    led = LED(settings.LED_PIN)
+    led.on()
     api = Unifi(settings.UNIFI_USERNAME, settings.UNIFI_PASSWORD, settings.UNIFI_URL, site=settings.UNIFI_SITE)
     print("+ Initialized Unifi API")
     cups.setServer(settings.CUPS_SERVER)
